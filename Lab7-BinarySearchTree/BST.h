@@ -9,6 +9,7 @@
 class BST: public BSTInterface {
 private:
     Node* rootNode;
+    NodeInterface* parentOf(NodeInterface* node);
     NodeInterface* parentOf(int data);
     NodeInterface* memberInTree(int data);
     bool isMember(int data);

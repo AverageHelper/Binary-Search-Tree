@@ -16,6 +16,11 @@ Node* to_node(NodeInterface* interface) {
     return static_cast<Node*>(interface);
 }
 
+NodeInterface* BST::parentOf(NodeInterface *node) {
+    if (node == nullptr) { return nullptr; }
+    return parentOf(node->getData());
+}
+
 /**
  * Attempts to find the nearest ancestor to a node.
  *
@@ -208,6 +213,15 @@ bool BST::remove(int data) {
         // Replace with largest node in its left child's right subtree.
         Node* leftChild = to_node(nodeToRemove->getLeftChild());
         Node* largest = leftChild->largestSubnode();
+        Node* parentOfLargest = to_node(parentOf(largest));
+        
+        if (largest == parentOfLargest->getLeftChild()) {
+            parentOfLargest->setLeftChild(nullptr);
+        } else {
+            parentOfLargest->setRightChild(nullptr);
+        }
+        largest->setLeftChild(nodeToRemove->getLeftChild());
+        largest->setRightChild(nodeToRemove->getRightChild());
         
         if (nodeToRemove == rootNode) {
             rootNode = largest;
