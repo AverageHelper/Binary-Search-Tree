@@ -215,10 +215,12 @@ bool BST::remove(int data) {
         Node* largest = leftChild->largestSubnode();
         Node* parentOfLargest = to_node(parentOf(largest));
         
-        if (largest == parentOfLargest->getLeftChild()) {
-            parentOfLargest->setLeftChild(nullptr);
-        } else {
-            parentOfLargest->setRightChild(nullptr);
+        if (parentOfLargest != nullptr) {
+            if (largest == parentOfLargest->getLeftChild()) {
+                parentOfLargest->setLeftChild(largest->getLeftChild());
+            } else {
+                parentOfLargest->setRightChild(largest->getLeftChild());
+            }
         }
         largest->setLeftChild(nodeToRemove->getLeftChild());
         largest->setRightChild(nodeToRemove->getRightChild());
