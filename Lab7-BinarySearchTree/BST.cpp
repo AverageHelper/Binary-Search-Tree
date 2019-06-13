@@ -5,9 +5,7 @@ BST::BST() {
 }
 
 BST::~BST() {
-    if (rootNode != nullptr) {
-        delete rootNode;
-    }
+    clear();
 }
 
 Node* to_node(NodeInterface* interface) {
@@ -27,32 +25,26 @@ Node* to_node(NodeInterface* interface) {
 NodeInterface* BST::parentOf(int data) {
     if (rootNode == nullptr) { return nullptr; }
     
-    queue<NodeInterface*> foundMembers;
-    // Add the root node to [List]
-    foundMembers.push(rootNode);
+    NodeInterface* currentNode = rootNode;
     
-    // While [List] is not empty
-    while (!foundMembers.empty()) {
-        // N = next node out of [List]
-        NodeInterface* current = foundMembers.back();
-        foundMembers.pop();
-        
-        // Add N’s children to [List]
-        if (current->getLeftChild() != nullptr) {
-            foundMembers.push(current->getLeftChild());
-        }
-        if (current->getRightChild() != nullptr) {
-            foundMembers.push(current->getRightChild());
-        }
-        
-        // If current node is a parent to what we're looking for, return it!
-        if (current->getLeftChild() != nullptr &&
-            current->getLeftChild()->getData() == data) {
-            return current;
-        }
-        if (current->getRightChild() != nullptr &&
-            current->getRightChild()->getData() == data) {
-            return current;
+    while (currentNode != nullptr) {
+        // If left child is correct,
+        if ((currentNode->getLeftChild() != nullptr &&
+            data == currentNode->getLeftChild()->getData()) ||
+            // Or if right child is correct,
+            (currentNode->getRightChild() != nullptr &&
+             data == currentNode->getRightChild()->getData())) {
+            // Return this node as parent.
+            return currentNode;
+            
+        } else if (data < currentNode->getData()) {
+            currentNode = currentNode->getLeftChild();
+            
+        } else if (data > currentNode->getData()) {
+            currentNode = currentNode->getRightChild();
+            
+        } else if (data == currentNode->getData()) {
+            return nullptr;
         }
     }
     
@@ -90,6 +82,11 @@ bool BST::isMember(int data) {
     return memberInTree(data) != nullptr;
 }
 
+/**
+ * Returns the root node for this tree
+ *
+ * @return The root node for this tree.
+ */
 NodeInterface* BST::getRootNode() const {
     return rootNode;
 }
@@ -140,7 +137,7 @@ bool BST::add(int data) {
  * Attempts to remove the given int from the BST tree
  *
  * @return true if successfully removed
- * @return false if remove is unsuccessful(i.e. the int is not in the tree)
+ * @return false if remove is unsuccessful (i.e. the int is not in the tree)
  */
 bool BST::remove(int data) {
     if (rootNode == nullptr) { return false; } // Return if empty
@@ -152,6 +149,7 @@ bool BST::remove(int data) {
         nodeToRemove = rootNode;
         
     } else if (parentNode == nullptr) {
+        // If we're not root, and there was no parent (should only apply to root) then fail. Not found.
         return false;
         
     } else if (parentNode->getLeftChild() != nullptr &&
@@ -228,5 +226,29 @@ bool BST::remove(int data) {
  * Removes all nodes from the tree, resulting in an empty tree.
  */
 void BST::clear() {
+    if (rootNode == nullptr) { return; }
     
+    stack<NodeInterface*> foundMembers;
+    // Add the root node to [List]
+    foundMembers.push(rootNode);
+    
+    // While [List] is not empty
+    while (!foundMembers.empty()) {
+        // N = next node out of [List]
+        NodeInterface* current = foundMembers.top();
+        foundMembers.pop();
+        
+        // Add N’s children to [List]
+        if (current->getLeftChild() != nullptr) {
+            foundMembers.push(current->getLeftChild());
+        }
+        if (current->getRightChild() != nullptr) {
+            foundMembers.push(current->getRightChild());
+        }
+        
+        // Evaluate N
+        delete current;
+    }
+    
+    rootNode = nullptr;
 }

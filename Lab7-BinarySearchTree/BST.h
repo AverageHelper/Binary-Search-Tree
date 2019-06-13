@@ -2,7 +2,7 @@
 #define BST_h
 
 #include <iostream>
-#include <queue>
+#include <stack>
 #include "Node.h"
 #include "BSTInterface.h"
 
