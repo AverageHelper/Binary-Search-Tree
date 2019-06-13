@@ -19,6 +19,8 @@
 		8541E5C022ACBBEE0013E85F /* key_file3.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8541E5B022ACBB330013E85F /* key_file3.txt */; };
 		8541E5C122ACBBEE0013E85F /* key_file4.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8541E5AE22ACBB320013E85F /* key_file4.txt */; };
 		8541E5C222ACBBEE0013E85F /* key_file5.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8541E5AD22ACBB320013E85F /* key_file5.txt */; };
+		85B044BB22B1829A0002726B /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85B044B922B1829A0002726B /* BST.cpp */; };
+		85B044BE22B184910002726B /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85B044BC22B184910002726B /* Node.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +63,10 @@
 		8541E5B422ACBB330013E85F /* file3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file3.txt; sourceTree = "<group>"; };
 		8541E5B522ACBB340013E85F /* file1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file1.txt; sourceTree = "<group>"; };
 		858E028222ACB84B005B6E58 /* Lab7-BinarySearchTree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Lab7-BinarySearchTree"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85B044B922B1829A0002726B /* BST.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
+		85B044BA22B1829A0002726B /* BST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
+		85B044BC22B184910002726B /* Node.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		85B044BD22B184910002726B /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 				8541E5B722ACBBD30013E85F /* External */,
 				8541E5AA22ACBB320013E85F /* BSTInterface.h */,
 				8541E5B122ACBB330013E85F /* NodeInterface.h */,
+				85B044BD22B184910002726B /* Node.h */,
+				85B044BC22B184910002726B /* Node.cpp */,
+				85B044BA22B1829A0002726B /* BST.h */,
+				85B044B922B1829A0002726B /* BST.cpp */,
 				8541E5A722ACBB310013E85F /* main.cpp */,
 				8541E5A822ACBB310013E85F /* README.md */,
 			);
@@ -176,7 +186,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85B044BE22B184910002726B /* Node.cpp in Sources */,
 				8541E5B622ACBB340013E85F /* main.cpp in Sources */,
+				85B044BB22B1829A0002726B /* BST.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
