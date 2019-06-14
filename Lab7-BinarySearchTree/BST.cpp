@@ -113,7 +113,10 @@ bool BST::add(int data) {
     
     while (insertion != nullptr) {
         // If we found the item, return false.
-        if (data == insertion->getData()) { return false; }
+        if (data == insertion->getData()) {
+            delete newNode;
+            return false;
+        }
         
         // If data < root, traverse left.
         if (data < insertion->getData() && insertion->getLeftChild() != nullptr) {
@@ -135,6 +138,7 @@ bool BST::add(int data) {
         }
     }
     
+    delete newNode;
     return false;
 }
 
@@ -250,6 +254,7 @@ void BST::clear() {
     
     // While [List] is not empty
     while (!foundMembers.empty()) {
+        
         // N = next node out of [List]
         NodeInterface* current = foundMembers.top();
         foundMembers.pop();

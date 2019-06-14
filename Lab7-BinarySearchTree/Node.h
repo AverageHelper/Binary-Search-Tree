@@ -1,7 +1,7 @@
 #ifndef Node_h
 #define Node_h
 
-#include <iostream>
+#include <climits>
 #include "NodeInterface.h"
 
 class Node: public NodeInterface {
