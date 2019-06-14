@@ -104,19 +104,15 @@ NodeInterface* BST::getRootNode() const {
  */
 bool BST::add(int data) {
     Node* insertion = rootNode;
-    Node* newNode = new Node(data);
     
     if (insertion == nullptr) {
-        rootNode = newNode;
+        rootNode = new Node(data);
         return true;
     }
     
     while (insertion != nullptr) {
         // If we found the item, return false.
-        if (data == insertion->getData()) {
-            delete newNode;
-            return false;
-        }
+        if (data == insertion->getData()) { return false; }
         
         // If data < root, traverse left.
         if (data < insertion->getData() && insertion->getLeftChild() != nullptr) {
@@ -124,7 +120,7 @@ bool BST::add(int data) {
             
         } else if (data < insertion->getData()) {
             // If there's no left to go, insert here!
-            insertion->setLeftChild(newNode);
+            insertion->setLeftChild(new Node(data));
             return true;
             
         // If data > root, traverse right.
@@ -133,12 +129,11 @@ bool BST::add(int data) {
             
         } else if (data > insertion->getData()) {
             // If there's no right to go, insert here!
-            insertion->setRightChild(newNode);
+            insertion->setRightChild(new Node(data));
             return true;
         }
     }
     
-    delete newNode;
     return false;
 }
 
